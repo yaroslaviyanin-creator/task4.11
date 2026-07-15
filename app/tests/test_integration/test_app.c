@@ -1,12 +1,11 @@
-
 /*
-test_app.c - модуль проверки программы.
-Янин Ярослав Иванович
-Группа МК-101
+test_app.c - модуль проверки программы. 
+
+Маткин Илья Александрович
 */
+
 #include "unity.h"
 
-#include "lib_main.h"
 
 void setUp(void) {
     // Вызывается перед каждым тестом (можно оставить пустым)
@@ -20,7 +19,6 @@ void TestLibAddFunction(void) {
 }
 
 int main(void) {
-
     return ;
 }
 

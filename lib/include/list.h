@@ -1,55 +1,34 @@
-/*
-list.h - логика базового списка.
-Янин Ярослав Иванович
-Группа МК-101
-*/
+// логика базового списка
 
 #ifndef _LIST_H_
 #define _LIST_H_
 
-
-// Вычисляем смещение поля в структуре
-// <TypeName> - тип структуры
-// <entryName> - имя поля внутри структуры
+// Вычисляем смещение
 #define OFFSET_OF(TypeName, entryName)  \
     (unsigned char*)&((TypeName*)0)->entryName  
+    // Представляем что структура находится в памяти ровно по адресу 0
+    // и обращаемся к нужному полю внутри этой воображаемой структуры
+    // и берем адрес этого поля.
 
-// Вычитаем смещение из реального адреса, чтобы получить указатель на начало структуры
-// <TypeName> - тип структуры
-// <entryName> - имя поля внутри структуры
-// <addr> - реальный адрес узелка ListEntry
+// Вычитаем смещение из реального адреса
 #define GET_CONTENT_RECORD(TypeName, entryName, addr)    \
     ((TypeName*)((unsigned char*)addr - OFFSET_OF(TypeName, entryName)))    
-
+    // addr — реальный адрес узелка ListEntry
+    // временно превращаем этот указатель в указатель на байты
+    // берем реальный адрес узелка и отступаем назад ровно на то количество байт, которое мы вычислили в OFFSET_OF
+    // мы оказываемся ровно в начале структуры StringListEntry
+    
 typedef struct _ListEntry {
-    struct _ListEntry* next;
-    struct _ListEntry* prev;
+    struct _ListEntry *next;
+    struct _ListEntry *prev;
 } ListEntry;
 
-// Функция инициализирует новый элемент списка или голову нового списка
-// <head> - указатель на базовый узел списка
-void list_init(ListEntry* head);
-
-// Функция добавляет новый элемент строго после указанного
-// <entry> - элемент, после которого происходит вставка
-// <new_entry> - новый вставляемый элемент
-ListEntry* list_add(ListEntry* entry, ListEntry* new_entry);
-
-// Функция исключает элемент из двусвязного списка, перевязывая соседей
-// <entry> - элемент, который нужно удалить из цепочки
-ListEntry* list_remove(ListEntry* entry);
-
-// Функция меняет местами два элемента в списке
-// <entry1> - первый переставляемый элемент
-// <entry2> - второй переставляемый элемент
-void list_swap(ListEntry* entry1, ListEntry* entry2);
-
-// Функция возвращает указатель на следующий элемент списка
-// <entry> - текущий элемент
-ListEntry* list_next(ListEntry* entry);
-
-// Функция возвращает указатель на предыдущий элемент списка
-// <entry> - текущий элемент
-ListEntry* list_prev(ListEntry* entry);
+void list_init(ListEntry *head); // инициализация нового элемента списка / головы нового списка
+ListEntry *list_add(ListEntry *entry, ListEntry *new_entry); // добавление нового элемента после указанного
+ListEntry *list_remove(ListEntry *entry); // исключение элемента из списка
+void list_swap(ListEntry *entry1, ListEntry *entry2); // перестановка элементов
+ListEntry *list_next(ListEntry *entry);
+ListEntry *list_prev(ListEntry *entry);
 
 #endif  // _LIST_H_
+
