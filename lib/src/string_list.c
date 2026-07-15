@@ -262,3 +262,99 @@ void string_list_make_reverse_quick_sort(StringListEntry* list) {
         entry = list_next(entry);
     }
 }
+
+// Функция выводит элементы списка в порядке инициализации
+// <list> - голова списка
+int string_list_init_order_print(StringListEntry* list) {
+    int n = 0;
+    StringListEntry* string_entry;
+    ListEntry* head, * entry;
+    head = &list->initOrderEntry;
+    entry = list_next(head);
+    while (entry != head) {
+        string_entry = GET_CONTENT_RECORD(StringListEntry, initOrderEntry, entry);
+        entry = list_next(entry);
+        printf("%5d. %s\n", ++n, string_entry->value);
+    }
+    return n;
+}
+
+// Функция выводит элементы списка в обратном порядке инициализации
+// <list> - голова списка
+int string_list_reverse_order_print(StringListEntry* list) {
+    int n = 0;
+    StringListEntry* string_entry;
+    ListEntry* head, * entry;
+    head = &list->reverseOrderEntry;
+    entry = list_next(head);
+    while (entry != head) {
+        string_entry = GET_CONTENT_RECORD(StringListEntry, reverseOrderEntry, entry);
+        entry = list_next(entry);
+        printf("%5d. %s\n", ++n, string_entry->value);
+    }
+    return n;
+}
+
+// Функция выводит элементы списка по длине
+// <list> - голова списка
+int string_list_sort_by_len_print(StringListEntry* list) {
+    int n = 0;
+    StringListEntry* string_entry;
+    ListEntry* head, * entry;
+    head = &list->sortByLen;
+    entry = list_next(head);
+    while (entry != head) {
+        string_entry = GET_CONTENT_RECORD(StringListEntry, sortByLen, entry);
+        entry = list_next(entry);
+        printf("%5d. %s\n", ++n, string_entry->value);
+    }
+    return n;
+}
+
+// Функция выводит элементы списка в обратном порядке по длине
+// <list> - голова списка
+int string_list_reverse_sort_by_len_print(StringListEntry* list) {
+    int n = 0;
+    StringListEntry* string_entry;
+    ListEntry* head, * entry;
+    head = &list->reverseSortByLen;
+    entry = list_next(head);
+    while (entry != head) {
+        string_entry = GET_CONTENT_RECORD(StringListEntry, reverseSortByLen, entry);
+        entry = list_next(entry);
+        printf("%5d. %s\n", ++n, string_entry->value);
+    }
+    return n;
+}
+
+// Функция выводит элементы списка после быстрой сортировки
+// <list> - голова списка
+int string_list_quick_sort_print(StringListEntry* list) {
+    int n = 0;
+    StringListEntry* string_entry;
+    ListEntry* head, * entry;
+    head = &list->quickSort;
+    entry = list_next(head);
+    while (entry != head) {
+        string_entry = GET_CONTENT_RECORD(StringListEntry, quickSort, entry);
+        entry = list_next(entry);
+        printf("%5d. %s\n", ++n, string_entry->value);
+    }
+    return n;
+}
+
+// Функция выводит элементы списка в обратном порядке после быстрой сортировки
+// <list> - голова списка
+int string_list_reverse_quick_sort_print(StringListEntry* list) {
+    int n = 0;
+    StringListEntry* string_entry;
+    ListEntry* head, * entry;
+    head = &list->reverseQuickSort;
+    entry = list_next(head);
+    while (entry != head) {
+        string_entry = GET_CONTENT_RECORD(StringListEntry, reverseQuickSort, entry);
+        entry = list_next(entry);
+        printf("%5d. %s\n", ++n, string_entry->value);
+    }
+    return n;
+}
